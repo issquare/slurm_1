@@ -1,3 +1,3 @@
 FROM python:3
-ADD main.py .
+COPY main.py /
 CMD ["python", "main.py"]
