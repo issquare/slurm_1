@@ -9,6 +9,9 @@ jobs:
     steps:
       - name: Clone repo code
         uses: actions/checkout@v6
+        wtih:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ github.head_ref }}
 
       - name: Setup Python
         uses: actions/setup-python@v6
@@ -20,10 +23,25 @@ jobs:
           python -m pip install --upgrade pip
           pip install flake8 black
 
+      - name: Check code formatting with Black
+        id: black-check
+        run: |
+          black --check ./dz_5.2_testing/ || echo "needs-formatting=true" >> $GITHUB_OUTPUT
+
+      - name: Auto-format with Black
+        if: steps.black-check.outputs.need-formatting == 'true'
+        run: |
+          black ./dz_5.2_testing/
+
+      - name: Commit formatting changes
+        if: steps.black-check.outputs.need-formatting == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "style: Auto-format with Black"
+          git push
+
       - name: Run flake8 linter
         run: |
-          flake8 ./dz_5.2_testing
-
-      - name: Check code formatting with Black
-        run: |
-          black --check --diff ./dz_5.2_testing
+          flake8 ./dz_5.2_testing/
