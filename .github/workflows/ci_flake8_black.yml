@@ -8,13 +8,13 @@ jobs:
 
     steps:
       - name: Clone repo code
-        uses: actions/checkout@v6
-        wtih:
+        uses: actions/checkout@v4
+        with:
           token: ${{ secrets.GITHUB_TOKEN }}
           ref: ${{ github.head_ref }}
 
       - name: Setup Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v5
         with:
           python-version: '3.8.12'
 
@@ -29,12 +29,12 @@ jobs:
           black --check ./dz_5.2_testing/ || echo "needs-formatting=true" >> $GITHUB_OUTPUT
 
       - name: Auto-format with Black
-        if: steps.black-check.outputs.need-formatting == 'true'
+        if: steps.black-check.outputs.needs-formatting == 'true'
         run: |
           black ./dz_5.2_testing/
 
       - name: Commit formatting changes
-        if: steps.black-check.outputs.need-formatting == 'true'
+        if: steps.black-check.outputs.needs-formatting == 'true'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
