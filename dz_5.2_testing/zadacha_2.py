@@ -4,4 +4,6 @@ def my_range(stop: int, start: int, step: int = 1):
         result.append(start)
         start = start + step
     return result
-print(my_range(stop = 5, start = 0, step = 1))
+
+
+print(my_range(stop=5, start=0, step=1))
