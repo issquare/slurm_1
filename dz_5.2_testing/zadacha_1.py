@@ -5,4 +5,5 @@ def matrix():
         else:
             print(i, end=" ")
 
+
 matrix()
