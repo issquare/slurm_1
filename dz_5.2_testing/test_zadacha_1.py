@@ -1,5 +1,6 @@
 from zadacha_1 import matrix
 
+
 def test_matrix(capfd):
     matrix()
     out, err = capfd.readouterr()
