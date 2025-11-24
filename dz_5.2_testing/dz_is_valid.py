@@ -1,10 +1,10 @@
 def is_valid(value: str):
     acc = []
     for ch in value:
-        if ch == "(":
+        if ch == '(':
             acc.append("(")
         elif ch == "[":
-            acc.append("[")
+            acc.append('[')
         elif ch == "{":
             acc.append("{")
         elif ch == ")":
@@ -12,13 +12,13 @@ def is_valid(value: str):
                 return False
             else:
                 acc.pop()
-        elif ch == "]":
-            if not acc or acc[-1] != "[":
+        elif ch == ']':
+            if not acc or acc[-1] != '[':
                 return False
             else:
                 acc.pop()
         elif ch == "}":
-            if not acc or acc[-1] != "{":
+            if not acc or acc[-1] != '{':
                 return False
             else:
                 acc.pop()
