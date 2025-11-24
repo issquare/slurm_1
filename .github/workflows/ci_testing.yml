@@ -23,3 +23,7 @@ jobs:
       - name: Run tests
         run: |
           python -m coverage run -m pytest ./dz_5.2_testing/
+
+      - name: Check coverage report (must be 100%)
+        run: |
+          coverage report --fail-under=100
