@@ -5,4 +5,6 @@ def test_matrix(capfd):
     matrix()
     out, err = capfd.readouterr()
 
-    assert out == "12345\n678910\n1112131415\n1617181920\n2122232425\n"
+    assert (
+        out == "1 2 3 4 5\n6 7 8 9 10\n11 12 13 14 15\n16 17 18 19 20\n21 22 23 24 25\n"
+    )

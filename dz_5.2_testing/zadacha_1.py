@@ -3,7 +3,7 @@ def matrix():
         if i % 5 == 0:
             print(i)
         else:
-            print(i, end="")
+            print(i, end=" ")
 
 
-print(matrix())
+matrix()
