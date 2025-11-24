@@ -1,0 +1,29 @@
+name: Code review with Flake8 & Black
+
+on: [push, pull_request]
+
+jobs:
+  linter_and_formatter:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repo code
+        uses: actions/checkout@v6
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.8.12'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 black
+
+      - name: Run flake8 linter
+        run: |
+          flake8 ./dz_5.2_testing
+
+      - name: Check code formatting with Black
+        run: |
+          black --check --diff ./dz_5.2_testing
